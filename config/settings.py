@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #My apps
     'main',
+    'mptt',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+MPTT_ADMIN_LEVEL_INDENT = 20
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
