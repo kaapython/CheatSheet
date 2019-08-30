@@ -7,7 +7,7 @@ from .models import *
 
 @admin.register(Category)
 class CategoryAdmin(MPTTModelAdmin):
-    """ Категории тем """
+    """ Категории """
     list_display = (
         "id",
         "name"

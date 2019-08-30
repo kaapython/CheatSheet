@@ -17,12 +17,17 @@ class Category(MPTTModel):
         ordering = ['id']
 
     class MPTTMeta:
-        order_insertion_by = ['name']
+        order_insertion_by = ['id']
 
 
 class Description(models.Model):
     """ Описание тем, вопросов """
-    name = models.CharField(max_length=1000, verbose_name='Описание', help_text='Описание')
+    name = models.TextField(verbose_name='Описание', help_text='Описание')
     category = TreeForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name='category', verbose_name='Категория', help_text='Категория')
     def __str__(self):
-        return self.name
+        return format(self.name)
+
+    class Meta:
+        verbose_name = 'Описание'
+        verbose_name_plural = 'Описания'
+        ordering = ['id']
