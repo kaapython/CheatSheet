@@ -1,12 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Шпаргалка по языкам программирования</title>
-</head>
-<body>
-<div class="row">
-    <div>Категории:</div>
-</div>
-</body>
-</html>
+{% extends 'main/base.html' %}
+{% load mptt_tags %}
+
+{% block menu %}
+<!--    <a class="navbar-brand" href="/admin/main/category/" target="_blank">Добавить категорию</a>-->
+<!--    <a class="navbar-brand" href="/admin/main/description/" target="_blank">Добавить описание</a>-->
+{% endblock menu %}
+{% block content %}
+    <div class="flex top">
+        <div class="item1" >CATEGORY:</div>
+        <div class="item2" >DESCRIPTION:</div>
+        <div class="item3" >MENU:</div>
+    </div>
+    <div class="flexd">
+        <div class="item1 flex_div">
+            <ul>
+                {% recursetree cat %}
+                    <li>
+                        <a href="{{ node.id }}">{{ node.name }}
+                        {% if not node.is_leaf_node %}
+                            <ul class="children">
+                                {{ children }}
+                            </ul>
+                        {% endif %}</a>
+                    </li>
+                {% endrecursetree %}
+            </ul>
+        </div>
+        <div class="item2 flex_div">
+            <div class="descript" id="idd">Категория: <b>{{ category }}</b></div>
+            {% for d in description %}
+                <div class="descript">{{ d }}</div>
+                {% if d.image %}
+                    <div><img src="{{ MEDIA_URL }}{{ d.image.url }}" class="magnify" style="width: 300px; height: 300px"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="item3 flex_div">
+            <a class="navbar-brand" href="/admin/main/category/" target="_blank">Add Category</a>
+            <a class="navbar-brand" href="/admin/main/description/" target="_blank">Add Description</a>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    console.log(document.getElementById('idd'));
+</script>
+{% endblock scripts %}

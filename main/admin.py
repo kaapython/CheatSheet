@@ -1,6 +1,6 @@
 from typing import Tuple
 from django.contrib import admin
-from mptt.admin import MPTTModelAdmin
+from mptt.admin import MPTTModelAdmin, TreeRelatedFieldListFilter
 
 
 from .models import *
@@ -9,8 +9,8 @@ from .models import *
 class CategoryAdmin(MPTTModelAdmin):
     """ Категории """
     list_display = (
+        "name",
         "id",
-        "name"
     )
 
     list_display_links: Tuple[str] = (
@@ -28,6 +28,7 @@ class DescriptionAdmin(admin.ModelAdmin):
         "id",
         "name",
         'category',
+        'image',
     )
 
     list_display_links: Tuple[str] = (
@@ -37,3 +38,7 @@ class DescriptionAdmin(admin.ModelAdmin):
     search_fields = (
         'name',
     )
+    list_filter = (
+        ('category', TreeRelatedFieldListFilter),
+    )
+    mptt_level_indent = 20
