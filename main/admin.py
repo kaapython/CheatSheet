@@ -9,8 +9,8 @@ from .models import *
 class CategoryAdmin(MPTTModelAdmin):
     """ Категории """
     list_display = (
-        "name",
-        "id",
+        'name',
+        'id',
     )
 
     list_display_links: Tuple[str] = (
@@ -25,8 +25,8 @@ class CategoryAdmin(MPTTModelAdmin):
 class DescriptionAdmin(admin.ModelAdmin):
     """ Описание тем """
     list_display = (
-        "id",
-        "name",
+        'id',
+        'name',
         'category',
         'image',
     )

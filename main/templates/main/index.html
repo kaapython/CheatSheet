@@ -29,20 +29,18 @@
         <div class="item2 flex_div">
             <div class="descript" id="idd">Категория: <b>{{ category }}</b></div>
             {% for d in description %}
-                <div class="descript">{{ d }}</div>
+                <div class="descript">{% autoescape off %}{{ d }}{% endautoescape %}</div>
                 {% if d.image %}
                     <div><img src="{{ MEDIA_URL }}{{ d.image.url }}" class="magnify" style="width: 300px; height: 300px"></div>
                 {% endif %}
             {% endfor %}
         </div>
         <div class="item3 flex_div">
-            <a class="navbar-brand" href="/admin/main/category/" target="_blank">Add Category</a>
-            <a class="navbar-brand" href="/admin/main/description/" target="_blank">Add Description</a>
+            <a class="navbar-brand" href="/admin/main/category/">Add Category</a>
+            <a class="navbar-brand" href="/admin/main/description/">Add Description</a>
         </div>
     </div>
 {% endblock content %}
 {% block scripts %}
-<script>
-    console.log(document.getElementById('idd'));
-</script>
+
 {% endblock scripts %}

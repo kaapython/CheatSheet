@@ -1,5 +1,6 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -22,7 +23,7 @@ class Category(MPTTModel):
 
 class Description(models.Model):
     """ Описание тем, вопросов """
-    name = models.TextField(verbose_name='Описание', help_text='Описание')
+    name = RichTextField(verbose_name='Описание', help_text='Описание')
     category = TreeForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, related_name='category', verbose_name='Категория', help_text='Категория')
     image = models.ImageField(null=True, blank=True, upload_to='images/', verbose_name='Изображение')
     def __str__(self):
